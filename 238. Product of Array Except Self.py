@@ -24,3 +24,24 @@ class Solution:
             answer.append(prefix[i] * suffix[i])
             i += 1
         return answer
+
+# Second approach O(1) Space Complexity
+
+class Solution:
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+
+        l = len(nums)
+        answer = [1]
+
+        i = 0
+        while i < l-1:
+            answer.append(nums[i] * answer[i])
+            i += 1
+            
+        j = 1
+        k = 1
+        while j < l+1:
+            answer[-j] = answer[-j] * k
+            k = k * nums[-j]
+            j += 1
+        return answer
